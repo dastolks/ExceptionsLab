@@ -18,11 +18,16 @@ public class NameService {
      * @throws IllegalArgumentException if fullName is null or empty or has 
      * fewer than two parts
      */
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws IllegalArgumentException{
         String lastName = null;
         
-        // write your code here to extract the lastName and store in the
-        // above local variable
+        if(fullName == null || fullName == "" || fullName.trim().length() == 0 || (fullName.length()-fullName.replace(" ","").length() >= 2) ){
+            throw new IllegalArgumentException("The Input is not compatible!");
+        }
+        if(fullName.contains(" ")){
+            
+            lastName = fullName.substring(fullName.indexOf(" ")+1, fullName.length());
+        }
         
         return lastName;
     }

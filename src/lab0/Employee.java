@@ -54,9 +54,16 @@ public class Employee {
         return firstName;
     }
 
-    public final void setFirstName(String firstName) {
-       
-        this.firstName = firstName;
+    public final void setFirstName(String firstName) throws IllegalArgumentException {
+        if(firstName == null || firstName == "" || firstName.trim().length() == 0){
+            throw new IllegalArgumentException("The first name is blank!");
+        }
+        else{
+            if(firstName.length() > 50){
+                firstName = firstName.substring(0,50);
+            }
+            this.firstName = firstName;
+        }       
     }
 
     public String getLastName() {
@@ -70,9 +77,9 @@ public class Employee {
     // not only spaces, no starting with a space
     // may contain any value in case of some crazy person named copyright symbol
     //
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) throws IllegalArgumentException {
         if(lastName == null || lastName == "" || lastName.trim().length() == 0){
-            System.out.println("AAAAA");
+            throw new IllegalArgumentException("The last name is blank!");
         }
         else{
             if(lastName.length() > 50){

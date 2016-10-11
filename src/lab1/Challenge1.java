@@ -22,19 +22,36 @@ public class Challenge1 {
         Challenge1 app = new Challenge1();
         
         String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
-        String lastName = app.extractLastName(fullName);
-        String msg = "Your last name is: " + lastName;
-        JOptionPane.showMessageDialog(null, msg);
+        String lastName = null;
+        
+//        String dishsoap = "dish is soap";
+//        int dishsoapis = dishsoap.replace(" ","").length();
+//        int wow = dishsoap.length() - dishsoap.replace(" ","").length();
+//        System.out.println(wow);
+        try {
+            lastName = app.extractLastName(fullName);
+            String msg = "Your last name is: " + lastName;
+            JOptionPane.showMessageDialog(null, msg);
+        }
+        catch(IllegalArgumentException iae){
+            JOptionPane.showMessageDialog(null, "The name you entered is not compatible!");
+        }
+        
     }
     
     // write the code to extract the lastName from the fullName
     // Use exception handling to prevent a crash in the event that fullName
     // is null or empty. Throw the exception to the calling method. and handle
     // it there.
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws IllegalArgumentException{
         String lastName = null;
         
-        // Your code goes here. Assign your value to lastName
+        if(fullName == null || fullName == "" || fullName.trim().length() == 0 || (fullName.length()-fullName.replace(" ","").length() >= 2) ){
+            throw new IllegalArgumentException("The Input is not compatible!");
+        }
+        if(fullName.contains(" ")){
+            lastName = fullName.substring(fullName.indexOf(" ")+1, fullName.length());
+        }
         
         return lastName;
     }
