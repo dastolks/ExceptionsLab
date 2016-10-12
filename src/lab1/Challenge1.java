@@ -50,7 +50,12 @@ public class Challenge1 {
             throw new IllegalArgumentException("The Input is not compatible!");
         }
         if(fullName.contains(" ")){
-            lastName = fullName.substring(fullName.indexOf(" ")+1, fullName.length());
+            if(fullName.indexOf(" ")+1 >= fullName.length()){
+                 throw new IllegalArgumentException("The Input you entered does not have a last name!");
+            }
+            else{
+                lastName = fullName.substring(fullName.indexOf(" ")+1, fullName.length());
+            }
         }
         
         return lastName;

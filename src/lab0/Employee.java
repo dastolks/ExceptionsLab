@@ -44,8 +44,8 @@ public class Employee {
     //validation rules:
     //daysVacation must be between 0 and 120 inclusive
     public void setDaysVacation(int daysVacation) throws IllegalArgumentException{
-        if(daysVacation <0 || daysVacation > MAX_VACATION_DAYS){
-            throw new IllegalArgumentException("Vacation days must be between 0 and 120 inclusive");
+        if(daysVacation < 0 || daysVacation > MAX_VACATION_DAYS){
+            throw new IllegalArgumentException("Vacation days must be between 0 and 28 inclusive");
         }
         this.daysVacation = daysVacation;
     }
