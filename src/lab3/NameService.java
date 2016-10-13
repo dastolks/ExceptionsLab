@@ -18,10 +18,20 @@ public class NameService {
      * @throws YourCustomExceptionName if fullName is null or empty or has
      * fewer than two parts
      */
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws NameNonExistentException{
         String lastName = null;
         
-        // put your code here
+        if(fullName == null || fullName == "" || fullName.trim().length() == 0 || (fullName.length()-fullName.replace(" ","").length() >= 2) ){
+            throw new NameNonExistentException("The Input is not compatible!");
+        }
+        if(fullName.contains(" ")){
+            if(fullName.indexOf(" ")+1 >= fullName.length()){
+                 throw new NameNonExistentException("The Input you entered does not have a last name!");
+            }
+            else{
+                lastName = fullName.substring(fullName.indexOf(" ")+1, fullName.length());
+            }
+        }
         
         return lastName;
     }
